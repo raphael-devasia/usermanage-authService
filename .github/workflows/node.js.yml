@@ -41,4 +41,5 @@ jobs:
       with:
         push: true
         tags: jaydee47/microservice:auth-service
+        platforms: linux/amd64,linux/arm64
 
