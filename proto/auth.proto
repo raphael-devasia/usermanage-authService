@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package auth;
+
+service AuthService {
+  rpc Register (RegisterRequest) returns (RegisterResponse);
+  rpc Login (LoginRequest) returns (LoginResponse);
+  rpc VerifyUser (VerifyRequest) returns (VerifyResponse);
+}
+
+message RegisterRequest {
+  string firstName = 1;
+  string lastName = 2;
+  string email = 3;
+  string password = 4;
+  string role = 5;
+}
+
+message RegisterResponse {
+    bool success = 1;
+    string message = 2;
+    User registerData = 3; // Add the registerData field of type User
+}
+
+message User {
+    string userId = 1; 
+    string firstName = 2; // First name of the user
+    string lastName = 3;  // Last name of the user
+    string email = 4;     // Email of the user
+    string password = 5;  // Password (optional to return for security reasons)
+    string role = 6;      // Role of the user
+         
+}
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+  string role = 3;
+}
+
+message LoginResponse {
+  bool success = 1;
+  string token = 2;
+  string message = 3;
+}
+
+message VerifyRequest {
+  
+  string token = 1;
+  
+}
+
+message VerifyResponse {
+  bool success = 1;
+  string message = 2;
+  string userId = 3;
+}
